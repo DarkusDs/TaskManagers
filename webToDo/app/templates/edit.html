@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Редагувати задачу №{{ index + 1 }}</h2>
+
+  <form method="post" action="/edit/{{ index }}">
+    <div>
+      <label>Назва: <input name="title" value="{{ task.title }}"></label>
+    </div>
+    <div>
+      <label>Опис: <textarea name="description">{{ task.description }}</textarea></label>
+    </div>
+    <div>
+      <label>Статус:
+        <select name="status">
+          <option {% if task.status == "заплановано" %}selected{% endif %}>заплановано</option>
+          <option {% if task.status == "виконується" %}selected{% endif %}>виконується</option>
+          <option {% if task.status == "виконано" %}selected{% endif %}>виконано</option>
+        </select>
+      </label>
+    </div>
+
+    <div style="margin-top:8px;">
+      <button type="submit">Зберегти</button>
+      <a href="/">Скасувати</a>
+    </div>
+  </form>
+{% endblock %}

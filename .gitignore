@@ -1,0 +1,6 @@
+consoleToDo/venv/
+webToDo/venv
+/venv
+*.idea/
+__pycache__/
+*.log

@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Список задач</h2>
+
+  {% if tasks %}
+    {% for task in tasks %}
+      <div class="task">
+        <strong>{{ loop.index }}. {{ task.title }}</strong>
+        <div class="small">Статус: {{ task.status }}</div>
+        <div style="margin-top:6px;">{{ task.description }}</div>
+
+        <div class="actions">
+          <a href="/edit/{{ loop.index0 }}">Редагувати</a>
+          <form class="inline" method="post" action="/delete/{{ loop.index0 }}">
+            <button type="submit">Видалити</button>
+          </form>
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>Немає задач</p>
+  {% endif %}
+
+  <hr>
+  <h3>Додати нову задачу</h3>
+  <form method="post" action="/add">
+    <div>
+      <label>Назва: <input name="title" required></label>
+    </div>
+    <div>
+      <label>Опис: <textarea name="description"></textarea></label>
+    </div>
+    <div>
+      <label>Статус:
+        <select name="status">
+          <option>заплановано</option>
+          <option>виконується</option>
+          <option>виконано</option>
+        </select>
+      </label>
+    </div>
+    <div style="margin-top:8px;">
+      <button type="submit">Додати</button>
+    </div>
+  </form>
+
+  <hr>
+  <h3>Збереження / Завантаження файлу</h3>
+  <div>
+    <form method="post" action="/save" style="display:inline-block; margin-right:10px;">
+      <label>Файл для збереження: <input name="filename" value="tasks.json"></label>
+      <button type="submit">Зберегти</button>
+    </form>
+
+    <form method="post" action="/load" style="display:inline-block; margin-right:10px;">
+      <label>Файл для відкриття: <input name="filename" value="tasks.json"></label>
+      <button type="submit">Відкрити</button>
+    </form>
+
+    <form method="post" action="/delete_file" style="display:inline-block;">
+      <label>Видалити файл: <input name="filename" value="tasks.json"></label>
+      <button type="submit">Видалити файл</button>
+    </form>
+  </div>
+
+  <hr>
+  <h3>Перемістити задачу</h3>
+  <form method="post" action="/move">
+    <label>Номер задачі (починаючи з 0): <input name="old_index" required></label>
+    <label>Нова позиція (починаючи з 0): <input name="new_index" required></label>
+    <button type="submit">Перемістити</button>
+  </form>
+{% endblock %}
