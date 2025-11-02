@@ -1,7 +1,15 @@
 Щоб запустити консольну версію, то просто потрібно запустити main.py відповідної папки
+
+
+
 Щоб щапустити веб версію, потрібно виконати наступний набір команд (перейшовши до відповідної папки через термінал):
-  python -m venv venv
-  .\venv\Scripts\activate.ps1
-  pip install -r requirements.txt
-  uvicorn app.main:app --reload
+  
+  1. python -m venv venv
+  
+  2. .\venv\Scripts\activate.ps1
+  
+  3. pip install -r requirements.txt
+  
+  4. uvicorn app.main:app --reload
+  
 Далі, щоб побачити функціонал, перейдіть за адресою: http://127.0.0.1:8000/
