@@ -95,8 +95,11 @@ class TaskManager:
 
     def to_dict_list(self) -> List[dict]:
         # Метод перетворює всі задачі в список словників для збереження у файл
-        return [t.to_dict() for t in self.tasks]
+        result = [t.to_dict() for t in self.tasks]
+        logging.info("Задачі перетворені в формат словників для збереження у файл")
+        return result
 
     def from_dict_list(self, data: List[dict]):
         # Метод відновлює задачі зі списку словників після завантаження з файлу
         self.tasks = [Task.from_dict(item) for item in data]
+        logging.info("Задачі було завантажено з файлу")
